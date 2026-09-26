@@ -1,0 +1,130 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Homework_1</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Homework_1.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <header class="main-header">
+
+                <div class="logo">
+                    <span class="logo-icon">◉</span>
+                    Canvix
+                </div>
+
+
+                <nav class="main-navigation">
+
+                    <a href="/">Home</a>
+
+                    <a href="/Home/About">About</a>
+
+                    <a href="/Home/Contact">Contact Us</a>
+
+                </nav>
+
+
+                <p class="header-button">
+                    Get in touch
+                </p>
+
+            </header>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="main-footer">
+
+        <div class="footer-content">
+
+            <div class="footer-about">
+
+                <div class="footer-logo">
+                    <span>◉</span>
+                    Canvix
+                </div>
+
+                <p>
+                    We're a team of strategic creator and
+                    digital innovator, united focus in our
+                    pursuit of mastery and joyful.
+                </p>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h4>Pages</h4>
+
+                <a href="/">Home</a>
+                <a href="#">Home 2</a>
+                <a href="#">About</a>
+                <a href="#">Contact Us</a>
+                <a href="/Portfolio">Portfolio</a>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h4>Utility Pages</h4>
+
+                <a href="#">Style Guide</a>
+                <a href="#">Instruction</a>
+                <a href="#">License</a>
+                <a href="#">Changelog</a>
+                <a href="#">Error 404</a>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h4>Subscribe</h4>
+
+                <div class="subscribe">
+
+                    <input type="email"
+                           placeholder="Enter your email here" />
+
+                    <button>
+                        Subscribe
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+            <span>Copyright by Canvix</span>
+
+            <span>Contact Us: +0 12 457 6578</span>
+
+            <span>Address: 119 Targovud Lane Guilport</span>
+
+        </div>
+
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
