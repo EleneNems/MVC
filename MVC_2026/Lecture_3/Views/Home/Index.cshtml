@@ -1,0 +1,18 @@
+﻿@{
+    ViewData["Title"] = "Home";
+}
+
+<main class="auth-page">
+    <section class="auth-card" style="text-align: center;">
+        <div class="brand">Recipe..</div>
+        <h1>Welcome, @User.Identity?.Name!</h1>
+        <p>You are logged in.</p>
+
+        <form asp-controller="Account" asp-action="Logout" method="post">
+            @Html.AntiForgeryToken()
+            <button type="submit" class="primary-button">
+                Logout
+            </button>
+        </form>
+    </section>
+</main>

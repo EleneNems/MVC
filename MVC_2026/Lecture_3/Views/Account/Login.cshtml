@@ -1,0 +1,71 @@
+﻿@model Lecture_3.Models.LoginViewModel
+
+@{
+    ViewData["Title"] = "Login";
+}
+
+<main class="auth-page">
+    <section class="auth-card">
+        <header class="auth-header">
+            <div class="brand">Recipe..</div>
+            <h1>Let’s Get Started !</h1>
+            <p>Log into your existing account</p>
+        </header>
+
+        <hr class="separator" />
+
+        @if (TempData["SuccessMessage"] is string message)
+        {
+            <div class="success-message">@message</div>
+        }
+
+        <form asp-controller="Account" asp-action="Login" method="post">
+            @Html.AntiForgeryToken()
+
+            <div asp-validation-summary="ModelOnly"
+                 class="validation-summary"></div>
+
+            <div class="form-group">
+                <label asp-for="Email">Email</label>
+                <input asp-for="Email"
+                       type="email"
+                       placeholder="Your Email Here" />
+                <span asp-validation-for="Email"
+                      class="field-error"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Password">Password</label>
+                <input asp-for="Password"
+                       type="password"
+                       placeholder="Your Password Here" />
+                <span asp-validation-for="Password"
+                      class="field-error"></span>
+            </div>
+
+            <div class="terms-row">
+                <input asp-for="AgreeToTerms" />
+                <label asp-for="AgreeToTerms">
+                    I agree to terms &amp; conditions
+                </label>
+            </div>
+
+            <span asp-validation-for="AgreeToTerms"
+                  class="field-error terms-error"></span>
+
+            <button type="submit" class="primary-button">
+                Login
+            </button>
+        </form>
+
+        <p class="switch-line">
+            Forgot your password?
+            <a href="#" onclick="return false;">Click here</a>
+        </p>
+
+        <p class="switch-line" style="margin-top: 47px;">
+            Don’t have an account?
+            <a asp-controller="Account" asp-action="Register">Sign up</a>
+        </p>
+    </section>
+</main>

@@ -1,0 +1,87 @@
+﻿@model Lecture_3.Models.RegisterViewModel
+
+@{
+    ViewData["Title"] = "Sign Up";
+}
+
+<main class="auth-page register-page">
+    <section class="auth-card">
+
+        <header class="auth-header">
+            <div class="brand">Recipe..</div>
+
+            <h1>Let’s Get you set up !</h1>
+
+            <p>Create a new account to access all features</p>
+        </header>
+
+        <hr class="separator" />
+
+        <form asp-controller="Account"
+              asp-action="Register"
+              method="post">
+
+            @Html.AntiForgeryToken()
+
+            <div asp-validation-summary="ModelOnly"
+                 class="validation-summary"></div>
+
+            <div class="form-group">
+                <label asp-for="FullName">Name</label>
+
+                <input asp-for="FullName"
+                       placeholder="Your Name Here"
+                       autocomplete="name" />
+
+                <span asp-validation-for="FullName"
+                      class="field-error"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Email">Email</label>
+
+                <input asp-for="Email"
+                       type="email"
+                       placeholder="Your Email Here"
+                       autocomplete="email" />
+
+                <span asp-validation-for="Email"
+                      class="field-error"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Password">Password</label>
+
+                <input asp-for="Password"
+                       type="password"
+                       placeholder="Your New Password Here"
+                       autocomplete="new-password" />
+
+                <span asp-validation-for="Password"
+                      class="field-error"></span>
+            </div>
+
+            <div class="terms-row">
+                <input asp-for="AgreeToTerms" />
+
+                <label asp-for="AgreeToTerms">
+                    I agree to terms &amp; conditions
+                </label>
+            </div>
+
+            <span asp-validation-for="AgreeToTerms"
+                  class="field-error terms-error"></span>
+
+            <button type="submit" class="primary-button">
+                Register Account
+            </button>
+        </form>
+
+        <p class="switch-line register-switch">
+            Already have an account?
+            <a asp-controller="Account"
+               asp-action="Login">Log in here</a>
+        </p>
+
+    </section>
+</main>
