@@ -118,7 +118,7 @@ namespace Lecture_3.Controllers
                 CookieAuthenticationDefaults.AuthenticationScheme,
                 principal);
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Recipes");
         }
 
         [HttpPost]

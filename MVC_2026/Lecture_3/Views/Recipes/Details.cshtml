@@ -1,0 +1,88 @@
+@model Lecture_3.Models.Recipe
+@{
+    ViewData["Title"] = Model.Title;
+    var author = Model.CreatedByUser?.FullName ?? "Recipee Community";
+}
+<div class="recipe-page">
+    <header class="recipe-nav">
+        <nav class="nav-links">
+            <a asp-controller="Recipes" asp-action="Index">Home</a>
+            <a asp-controller="Recipes" asp-action="Create">Add Menu</a>
+            <a asp-controller="Recipes" asp-action="Index" asp-fragment="search">Search Menu</a>
+        </nav>
+        <div class="user-area"><span class="user-icon">♙</span><div><strong>@User.Identity?.Name</strong><form asp-controller="Account" asp-action="Logout" method="post">@Html.AntiForgeryToken()<button class="logout-link" type="submit">Logout</button></form></div></div>
+    </header>
+
+    <main class="recipe-main recipe-detail-main">
+        <div class="detail-author-row">
+            <div class="author-avatar">♙</div>
+            <div class="author-copy"><span>@author</span><small>Recipe creator</small></div>
+            <div class="detail-actions">
+                <form asp-action="ToggleLike" method="post">@Html.AntiForgeryToken()<input type="hidden" name="id" value="@Model.Id" /><button class="text-action" type="submit">♡ <span>Like Recipe</span></button></form>
+                <form asp-action="ToggleBookmark" method="post">@Html.AntiForgeryToken()<input type="hidden" name="id" value="@Model.Id" /><button class="text-action" type="submit">♧ <span>Bookmark Recipe</span></button></form>
+            </div>
+        </div>
+        <h1 class="detail-title">@Model.Title</h1>
+        <div class="gold-rule detail-rule"><span></span></div>
+
+        @if (!string.IsNullOrWhiteSpace(Model.ImageUrl))
+        {
+            <img class="detail-hero-image" src="@Model.ImageUrl" alt="@Model.Title" />
+        }
+        else
+        {
+            <div class="detail-hero-placeholder">Photo</div>
+        }
+
+        <section class="detail-process">
+            <h2>Making Process:</h2>
+            @if (!string.IsNullOrWhiteSpace(Model.MakingProcess))
+            {
+                <p>@Model.MakingProcess</p>
+            }
+        </section>
+
+        <section class="detail-field-row">
+            <h3>Ingredients:</h3>
+            <div>
+                @if (Model.RecipeIngredients.Any())
+                {
+                    <ul class="detail-ingredients">
+                        @foreach (var item in Model.RecipeIngredients.OrderBy(x => x.Ingredient.Name))
+                        {
+                            <li>@(string.IsNullOrWhiteSpace(item.Quantity) ? "" : item.Quantity + " ")@item.Ingredient.Name</li>
+                        }
+                    </ul>
+                }
+                else
+                {
+                    <p>No ingredients have been added yet.</p>
+                }
+            </div>
+        </section>
+
+        <section class="detail-field-row description-row">
+            <h3>Description:</h3>
+            <p>@Model.Description</p>
+        </section>
+
+        @if (!string.IsNullOrWhiteSpace(Model.VideoLink))
+        {
+            <section class="detail-field-row video-row">
+                <h3>Video Link:</h3>
+                <a href="@Model.VideoLink" target="_blank" rel="noopener noreferrer">@Model.VideoLink</a>
+            </section>
+        }
+        <a asp-action="Index" class="back-to-recipes">‹ Back to recipes</a>
+    </main>
+    <footer class="recipe-footer">
+        <div class="footer-brand">Website Logo here<small>Sub Headline Here</small></div>
+        <div class="footer-links">
+            <a asp-controller="Recipes" asp-action="Index">Home</a>
+            <a asp-controller="Recipes" asp-action="Create">Add Menu</a>
+            <a asp-controller="Recipes" asp-action="Index" asp-fragment="search">Search Menu</a>
+            <a asp-controller="Recipes" asp-action="MyRecipes">Your Recipes</a>
+            <span>Social Media Here</span>
+        </div>
+    </footer>
+</div>

@@ -15,7 +15,9 @@ namespace Lecture_3.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            if (User.Identity?.IsAuthenticated == true)
+                return RedirectToAction("Index", "Recipes");
+            return RedirectToAction("Login", "Account");
         }
 
         public IActionResult Privacy()

@@ -1,0 +1,43 @@
+@model List<Lecture_3.Models.RecipeListItemViewModel>
+@{
+    ViewData["Title"] = "Recipes";
+}
+<div class="recipe-page">
+    <header class="recipe-nav">
+        <nav class="nav-links">
+            <a asp-controller="Recipes" asp-action="Index">Home</a>
+            <a asp-controller="Recipes" asp-action="Create">Add Menu</a>
+            <a href="#search">Search Menu</a>
+        </nav>
+        <div class="user-area"><span class="user-icon">♙</span><div><strong>@User.Identity?.Name</strong><form asp-controller="Account" asp-action="Logout" method="post">@Html.AntiForgeryToken()<button class="logout-link" type="submit">Logout</button></form></div></div>
+    </header>
+    <main class="recipe-main">
+        <div class="diet-heading">@(ViewBag.PageHeading ?? "Have A Safe Diet !!!")</div>
+        <div class="gold-rule"><span></span></div>
+        <form id="search" class="recipe-search" asp-controller="Recipes" asp-action="Index" method="get">
+            <input name="search" value="@ViewBag.Search" placeholder="Search recipes or ingredients..." aria-label="Search recipes or ingredients" />
+            <button type="submit">Search</button>
+        </form>
+        @if (!Model.Any()) { <p class="empty-recipes">No recipes found. Try another search.</p> }
+        @foreach (var recipe in Model)
+        {
+            <article class="recipe-row">
+                <a class="recipe-image-link" asp-controller="Recipes" asp-action="Details" asp-route-id="@recipe.Id" aria-label="Open @recipe.Title">
+                    <img class="recipe-image" src="@recipe.ImageUrl" alt="@recipe.Title" />
+                </a>
+                <div class="recipe-info">
+                    <h2><a asp-controller="Recipes" asp-action="Details" asp-route-id="@recipe.Id">@recipe.Title</a><span>Made By &lt;@recipe.AuthorName&gt;</span></h2>
+                    <div class="ingredient-label">Ingredients</div>
+                    <p class="recipe-description">@(string.Join(", ", recipe.Ingredients))</p>
+                    <p class="recipe-description">@recipe.Description</p>
+                    <div class="recipe-actions">
+                        <form asp-action="ToggleLike" method="post">@Html.AntiForgeryToken()<input type="hidden" name="id" value="@recipe.Id" /><button type="submit" class="text-action" aria-label="Like recipe">@(recipe.IsLiked ? "♥" : "♡") <span>@(recipe.IsLiked ? "Liked" : "Like Recipe")</span></button></form>
+                        <form asp-action="ToggleBookmark" method="post">@Html.AntiForgeryToken()<input type="hidden" name="id" value="@recipe.Id" /><button type="submit" class="text-action" aria-label="Bookmark recipe">@(recipe.IsBookmarked ? "▣" : "♧") <span>@(recipe.IsBookmarked ? "Bookmarked" : "Bookmark Recipe")</span></button></form>
+                    </div>
+                </div>
+            </article>
+        }
+        <div class="pagination-note">Page 1 <span>›</span></div>
+    </main>
+    <footer class="recipe-footer"><div class="footer-brand">Website Logo here<small>Sub Headline Here</small></div><div class="footer-links"><a asp-controller="Recipes" asp-action="Index">Home</a><a asp-controller="Recipes" asp-action="Create">Add Menu</a><a href="#search">Search Menu</a><a asp-controller="Recipes" asp-action="MyRecipes">Your Recipes</a><span>Social Media Here</span></div></footer>
+</div>

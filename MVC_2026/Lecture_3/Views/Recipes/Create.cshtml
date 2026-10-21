@@ -1,0 +1,37 @@
+@model Lecture_3.Models.CreateRecipeViewModel
+@{
+    ViewData["Title"] = "Add Recipe";
+}
+<div class="recipe-page">
+    <header class="recipe-nav">
+        <nav class="nav-links">
+            <a asp-controller="Recipes" asp-action="Index">Home</a>
+            <a asp-controller="Recipes" asp-action="Create">Add Menu</a>
+            <a asp-controller="Recipes" asp-action="Index" asp-fragment="search">Search Menu</a>
+        </nav>
+        <div class="user-area"><span class="user-icon">♙</span><div><strong>@User.Identity?.Name</strong><form asp-controller="Account" asp-action="Logout" method="post">@Html.AntiForgeryToken()<button class="logout-link" type="submit">Logout</button></form></div></div>
+    </header>
+    <main class="recipe-main create-recipe-main">
+        <div class="diet-heading">Add a Recipe</div>
+        <div class="gold-rule"></div>
+        <form asp-action="Create" method="post" class="recipe-create-form">
+            @Html.AntiForgeryToken()
+            <div asp-validation-summary="ModelOnly" class="validation-summary"></div>
+            <label asp-for="Title"></label><input asp-for="Title" /><span asp-validation-for="Title" class="field-error"></span>
+            <label asp-for="ImageUrl"></label><input asp-for="ImageUrl" placeholder="https://..." /><span asp-validation-for="ImageUrl" class="field-error"></span>
+            <label asp-for="Ingredients"></label><textarea asp-for="Ingredients" rows="5" placeholder="One ingredient per line"></textarea><span asp-validation-for="Ingredients" class="field-error"></span>
+            <label asp-for="MakingProcess"></label><textarea asp-for="MakingProcess" rows="5"></textarea><span asp-validation-for="MakingProcess" class="field-error"></span>
+            <label asp-for="Description"></label><textarea asp-for="Description" rows="4"></textarea><span asp-validation-for="Description" class="field-error"></span>
+            <label asp-for="VideoLink"></label><input asp-for="VideoLink" placeholder="https://www.youtube.com/..." /><span asp-validation-for="VideoLink" class="field-error"></span>
+            <button type="submit" class="primary-button create-submit">Save Recipe</button>
+            <a asp-action="Index" class="back-to-recipes">Cancel and return to recipes</a>
+        </form>
+    </main>
+    <footer class="recipe-footer">
+        <div class="footer-brand">Website Logo here<small>Sub Headline Here</small></div>
+        <div class="footer-links"><a asp-controller="Recipes" asp-action="Index">Home</a><a asp-controller="Recipes" asp-action="Create">Add Menu</a><a asp-controller="Recipes" asp-action="Index" asp-fragment="search">Search Menu</a><a asp-controller="Recipes" asp-action="MyRecipes">Your Recipes</a><span>Social Media Here</span></div>
+    </footer>
+</div>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
