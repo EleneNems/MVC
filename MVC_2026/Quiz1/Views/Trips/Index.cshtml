@@ -1,0 +1,32 @@
+@model List<Trip>
+@using System.Globalization
+@{
+  ViewData["Title"] = "My trips";
+  Layout = "_Layout";
+  string D(DateTime d) => d.ToString("dddd, MMMM d, yyyy", CultureInfo.InvariantCulture);
+  string Stars(double r) { var s = ""; for (int i = 1; i <= 5; i++) s += r >= i ? "★" : r >= i - .5 ? "⯨" : "☆"; return s; }
+}
+<h1>My trips</h1>
+@if (!Model.Any())
+{
+  <div class="empty">You have no planned trips yet.</div>
+}
+@foreach (var t in Model)
+{
+  <article class="trip">
+    <img class="pic" src="@t.ImageUrl" alt="" />
+    <div class="info">
+      <h3>@t.HotelName</h3>
+      <div class="stars">@Stars(t.Rating)<span>@t.Rating.ToString("0.0", CultureInfo.InvariantCulture) (@t.ReviewCount.ToString("N0", CultureInfo.InvariantCulture) Reviews)</span></div>
+      <div class="@(t.IsRefundable ? "rf" : "nr")">@(t.IsRefundable ? "Refundable" : "Non refundable")</div>
+      <p>Check in: @D(t.CheckIn)</p>
+      <p>Check out: @D(t.CheckOut)</p>
+      <p>@t.Nights night stay</p>
+    </div>
+    <div class="price">
+      <span>@t.Rooms room @t.Nights days</span>
+      <span><s>$@t.OldPrice.ToString("0")</s> <b>$@t.Price.ToString("0")</b><br />Includes taxes and fees</span>
+      <a class="btn sm" href="#">View trip details</a>
+    </div>
+  </article>
+}

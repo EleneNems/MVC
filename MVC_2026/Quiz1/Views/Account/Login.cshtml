@@ -1,0 +1,26 @@
+@model LoginViewModel
+@{ ViewData["Title"] = "Sign in"; }
+<h1>Sign in</h1>
+<p class="sub">&nbsp;</p>
+<form asp-action="Login" method="post" novalidate>
+  <div asp-validation-summary="ModelOnly" class="banner bad"></div>
+
+  <label asp-for="Email"></label>
+  <input asp-for="Email" autocomplete="username" />
+  <span asp-validation-for="Email" class="err"></span>
+
+  <label asp-for="Password"></label>
+  <div class="fld">
+    <input asp-for="Password" autocomplete="current-password" />
+    <button type="button" class="eye" data-eye="Password" aria-label="Show or hide password">👁</button>
+  </div>
+  <span asp-validation-for="Password" class="err"></span>
+
+  <div class="right"><a asp-action="ForgotPassword" class="link">Forgot password?</a></div>
+  <button class="btn" type="submit">Login</button>
+</form>
+<div class="demo">
+  Demo accounts (first sign-in asks for a new password):<br>
+  <code>elene@gmail.com</code> / <code>123</code><br>
+    <code>giorgi@gmail.com</code> / <code>123</code>
+</div>

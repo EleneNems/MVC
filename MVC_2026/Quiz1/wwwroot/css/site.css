@@ -1,0 +1,38 @@
+:root{--bg:#fff;--page:#f2f2f2;--card:#fff;--ink:#1b1b1b;--mute:#555;--field:#f1f1f1;--blue:#2f80ed;--red:#e5484d;--star:#f2994a;--line:#e6e6e6}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.45 "Ubuntu","Segoe UI",system-ui,sans-serif}
+.brand{display:flex;align-items:center;gap:6px}.brand svg{width:16px;height:16px;fill:var(--blue)}
+.auth{max-width:420px;margin:0 auto;padding:28px 20px 40px}.auth .brand{margin-bottom:56px}
+h1{font-size:22px;margin:0 0 8px;text-align:center;font-weight:600}
+.sub{text-align:center;color:var(--mute);font-size:13px;margin:0 0 26px}
+label{display:block;font-size:12px;margin:14px 0 6px}
+.fld{position:relative}
+input{width:100%;height:36px;border:1px solid transparent;border-radius:4px;background:var(--field);color:var(--ink);padding:0 36px 0 10px;font:inherit}
+input:focus-visible,button:focus-visible,a:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+input.input-validation-error{border-color:var(--red)}
+.eye{position:absolute;right:4px;top:3px;width:30px;height:30px;border:0;background:none;cursor:pointer}
+.err,.field-validation-error{display:block;color:var(--red);font-size:12px;margin-top:4px}
+.validation-summary-valid{display:none}
+.banner{border-radius:4px;padding:9px 11px;font-size:12px;margin-bottom:6px}
+.banner.ok{background:#e7f6ec;color:#176a3a}.banner.bad{background:#fdecec;color:#a4262b}
+.banner.bad ul{margin:0;padding-left:16px}
+.btn{display:block;width:100%;height:36px;line-height:36px;text-align:center;border:0;border-radius:4px;background:var(--blue);color:#fff;cursor:pointer;margin-top:22px;text-decoration:none;font:inherit}
+.btn.sm{display:inline-block;width:auto;padding:0 14px;height:32px;line-height:32px;margin:0;font-size:12px}
+.link{color:var(--blue);font-size:12px;background:none;border:0;padding:0;cursor:pointer;text-decoration:none}
+.right{text-align:right;margin-top:10px}.note{font-size:12px;color:var(--mute);margin-top:16px}
+.demo{margin-top:34px;border-top:1px dashed var(--line);padding-top:12px;font-size:12px;color:var(--mute)}
+.demo code{background:var(--field);padding:1px 5px;border-radius:3px}
+.topnav{background:var(--card);display:flex;align-items:center;gap:20px;padding:10px 6vw;border-bottom:1px solid var(--line)}
+.topnav .menu{display:flex;gap:30px;margin:0 auto;font-size:12px}
+.avatar{width:34px;height:34px;border-radius:50%;background:#f4b740;color:#5b3a00;display:grid;place-items:center;font-weight:600}
+.page{background:var(--page);min-height:calc(100vh - 56px);padding:30px 6vw 50px}.wrap{max-width:900px;margin:0 auto}
+.wrap h1{text-align:left;margin:0 0 14px}
+.trip{display:flex;gap:14px;background:var(--card);border:1px solid var(--line);border-radius:4px;padding:8px;margin-bottom:26px}
+.pic{flex:0 0 138px;width:138px;height:98px;border-radius:4px;object-fit:cover}
+.info{flex:1;min-width:0}.info h3{margin:2px 0 3px;font-size:15px;font-weight:500}.info p{margin:2px 0;font-size:11px}
+.stars{color:var(--star);font-size:12px}.stars span{color:var(--mute);margin-left:4px}
+.nr{color:var(--red);font-size:11px;margin:8px 0 2px}.rf{color:#1c8a4b;font-size:11px;margin:8px 0 2px}
+.price{text-align:right;display:flex;flex-direction:column;align-items:flex-end;justify-content:space-between;font-size:11px;color:var(--mute)}
+.price s{color:var(--red)}.price b{color:var(--ink);font-size:15px;font-weight:500}
+.empty{background:var(--card);border-radius:4px;padding:30px;text-align:center;color:var(--mute)}
+@media(max-width:620px){.trip{flex-direction:column}.pic{width:100%;flex-basis:auto;height:120px}.price{align-items:flex-start;text-align:left}.topnav .menu{display:none}}
